@@ -6,7 +6,7 @@ import ItemListContainer from '../ItemListContainer/ItemListContainer';
 const Menu = () => {
 	return (
 	<div><NavbarLight/>
-	<ItemListContainer/></div>
+	<ItemListContainer text="Bienvenidos!! Esta es una prop pasada por parametro :)"/></div>
 	);
 };
 
