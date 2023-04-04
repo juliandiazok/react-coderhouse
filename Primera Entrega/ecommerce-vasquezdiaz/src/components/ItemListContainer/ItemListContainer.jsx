@@ -16,7 +16,7 @@ function ItemListContainer({ text }) {
 					height: '70vh',
 				}}>
 				<div>
-					<img src={ponzoo} width='160' height='130' alt='Bienvenidos!' />
+					<img src={ponzoo} width='160' height='130' alt='Bienvenidos!!!' />
 				</div>
 				{text}
 			</div>
