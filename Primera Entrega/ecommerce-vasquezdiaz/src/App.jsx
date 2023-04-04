@@ -8,7 +8,7 @@ function App() {
 		<div className='App' style={{
 			backgroundColor: 'orange',
 			width: '100vw',
-        height: '100vh'
+        	height: '100vh'
 		  }}>
 			<Menu />
 		</div>
