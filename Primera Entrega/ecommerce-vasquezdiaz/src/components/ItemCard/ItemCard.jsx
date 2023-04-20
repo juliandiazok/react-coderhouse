@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemCard({ id, foto, name, price, categoria }) {
+function ItemCard({ id, foto, name, marca, price, categoria }) {
 	return (
 		<div key={id} className='card w-25'>
 			<Link to={`/detail/${id}`}>
@@ -9,12 +9,12 @@ function ItemCard({ id, foto, name, price, categoria }) {
 			</Link>
 			<div className='card-body'>
 				<h6>Nombre: {name}</h6>
+				<label>Marca: {marca}</label>
+				<br></br>
 				<label>Precio: {price}</label>
+				<br></br>
 				<label>Categoria: {categoria}</label>
 			</div>
-			{/*<div className='card-footer'>
-				<button className='btn btn-outline-dark'>Detalle</button>
-			</div>*/}
 		</div>
 	);
 }

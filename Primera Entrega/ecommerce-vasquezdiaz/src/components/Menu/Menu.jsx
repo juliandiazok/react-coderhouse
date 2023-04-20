@@ -14,12 +14,22 @@ const Menu = () => {
 		<div>
 			<Router>
 				<NavbarLight />
-				<Routes>
-					<Route path='/' element={<ItemListContainer />} />
-					<Route path='/categoria/:categoria' element={<ItemListContainer />} />
-					<Route path='/detail/:pid' element={<ItemDetailContainer />} />
-					<Route path='*' element={<Navigate to='/' />} />
-				</Routes>
+				<div
+					style={{
+						marginTop: '3vh',
+						backgroundColor: 'white',
+						padding: '10vh',
+					}}>
+					<Routes>
+						<Route path='/' element={<ItemListContainer />} />
+						<Route
+							path='/categoria/:categoria'
+							element={<ItemListContainer />}
+						/>
+						<Route path='/detail/:pid' element={<ItemDetailContainer />} />
+						<Route path='*' element={<Navigate to='/' />} />
+					</Routes>
+				</div>
 			</Router>
 		</div>
 	);

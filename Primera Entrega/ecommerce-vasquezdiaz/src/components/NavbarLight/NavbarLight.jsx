@@ -24,25 +24,18 @@ function NavbarLight() {
 					</Link>
 					<Nav className='me-auto'>
 						<NavLink
-							to='/categoria/gorras'
+							to='/categoria/Balanceado'
 							className={({ isActive }) =>
 								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
 							}>
-							Gorras
+							Balanceados
 						</NavLink>
 						<NavLink
-							to='/categoria/remeras'
+							to='/categoria/Accesorios'
 							className={({ isActive }) =>
 								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
 							}>
-							Remeras
-						</NavLink>
-						<NavLink
-							to='/categoria/remeras'
-							className={({ isActive }) =>
-								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
-							}>
-							Sobre Nosotros
+							Accesorios
 						</NavLink>
 					</Nav>
 				</Container>

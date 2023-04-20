@@ -11,41 +11,45 @@ function ItemListContainer() {
 	const { categoria } = useParams();
 
 	useEffect(() => {
-		mFetch()
-			.then((resultado) => {
-				setProductos(resultado);
-			})
-			.catch((error) => console.log(error))
-			.finally(() => setIsLoading(false));
-	}, []);
-
+		if (!categoria) {
+			mFetch()
+				.then((resultado) => {
+					setProductos(resultado);
+				})
+				.catch((error) => console.log(error))
+				.finally(() => setIsLoading(false));
+		} else {
+			mFetch()
+				.then((resultado) => {
+					setProductos(
+						resultado.filter((producto) => producto.categoria === categoria)
+					);
+				})
+				.catch((error) => console.log(error))
+				.finally(() => setIsLoading(false));
+		}
+	}, [categoria]);
 	const handleProductFiltered = ({ filterState, handleFilterChange }) => (
 		<center>
-			<h2>Buscar Producto</h2>
-			<br></br>
-			<input type='text' value={filterState} onChange={handleFilterChange} />
-
 			{isLoading ? (
 				<h2>Cargando...</h2>
 			) : (
 				<>
 					<div
 						style={{
-							backgroundColor: 'white',
 							display: 'flex',
 							flexDirection: 'row',
 							flexWrap: 'wrap',
-							padding: '10vh',
-							/*height: '70vh',*/
 						}}>
 						{filterState === ''
-							? productos.map(({ id, foto, name, price, categoria }) => (
+							? productos.map(({ id, categoria, name, marca, price, foto }) => (
 									<ItemCard
 										id={id}
-										foto={foto}
-										name={name}
-										price={price}
 										categoria={categoria}
+										name={name}
+										marca={marca}
+										price={price}
+										foto={foto}
 									/>
 							  ))
 							: productos
@@ -54,13 +58,14 @@ function ItemListContainer() {
 											.toLowerCase()
 											.includes(filterState.toLowerCase())
 									)
-									.map(({ id, foto, name, price, categoria }) => (
+									.map(({ id, categoria, name, marca, price, foto }) => (
 										<ItemCard
 											id={id}
-											foto={foto}
-											name={name}
-											price={price}
 											categoria={categoria}
+											name={name}
+											marca={marca}
+											price={price}
+											foto={foto}
 										/>
 									))}
 					</div>
