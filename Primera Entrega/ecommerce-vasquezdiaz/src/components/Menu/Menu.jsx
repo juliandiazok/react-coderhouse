@@ -1,12 +1,26 @@
 import React from 'react';
+import {
+	Navigate,
+	Route,
+	BrowserRouter as Router,
+	Routes,
+} from 'react-router-dom';
 import NavbarLight from '../NavbarLight/NavbarLight';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
+import { ItemDetailContainer } from '../ItemDetailContainer/ItemDetailContainer';
 
 const Menu = () => {
 	return (
 		<div>
-			<NavbarLight />
-			<ItemListContainer text='Bienvenidos!! Esta es una prop pasada por parametro :)' />
+			<Router>
+				<NavbarLight />
+				<Routes>
+					<Route path='/' element={<ItemListContainer />} />
+					<Route path='/categoria/:categoria' element={<ItemListContainer />} />
+					<Route path='/detail/:pid' element={<ItemDetailContainer />} />
+					<Route path='*' element={<Navigate to='/' />} />
+				</Routes>
+			</Router>
 		</div>
 	);
 };

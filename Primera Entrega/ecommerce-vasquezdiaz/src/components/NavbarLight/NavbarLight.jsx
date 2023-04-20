@@ -1,37 +1,59 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import CartWidget from '../CartWidget/CartWidget'
+import { Link, NavLink } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
 import logo from '../../assets/images/loguito.png';
 
 function NavbarLight() {
-  return (
-    <>
-      <br />
-      <Navbar bg="light" variant="light">
-        <Container>
-          <Navbar.Brand href="#home">
-          <img  
-              src={logo}
-              width="130"
-              height="30"
-              className="d-inline-block align-top"
-              alt="Ponzoo"
-            />
-            </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Tienda</Nav.Link>
-            <Nav.Link href="#pricing">Sobre Nosotros</Nav.Link>
-          </Nav>
-        </Container>
-        <Navbar.Collapse className="justify-content-end">
-          <CartWidget/>
-        </Navbar.Collapse>
-      </Navbar>
-      
-    </>
-  );
+	return (
+		<>
+			<br />
+			<Navbar bg='light' variant='light'>
+				<Container>
+					<Link to='/'>
+						<Navbar.Brand>
+							<img
+								src={logo}
+								width='130'
+								height='30'
+								className='d-inline-block align-top'
+								alt='Ponzoo'
+							/>
+						</Navbar.Brand>
+					</Link>
+					<Nav className='me-auto'>
+						<NavLink
+							to='/categoria/gorras'
+							className={({ isActive }) =>
+								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
+							}>
+							Gorras
+						</NavLink>
+						<NavLink
+							to='/categoria/remeras'
+							className={({ isActive }) =>
+								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
+							}>
+							Remeras
+						</NavLink>
+						<NavLink
+							to='/categoria/remeras'
+							className={({ isActive }) =>
+								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
+							}>
+							Sobre Nosotros
+						</NavLink>
+					</Nav>
+				</Container>
+				<Navbar.Collapse className='justify-content-end'>
+					<Link className='' to='/cart'>
+						<CartWidget />
+					</Link>
+				</Navbar.Collapse>
+			</Navbar>
+		</>
+	);
 }
 
 export default NavbarLight;
