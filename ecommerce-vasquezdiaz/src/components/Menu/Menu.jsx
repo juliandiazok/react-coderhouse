@@ -27,10 +27,7 @@ const Menu = () => {
 				<div style={styles.menu}>
 					<Routes>
 						<Route path='/' element={<ItemListContainer />} />
-						<Route
-							path='/categoria/:categoria'
-							element={<ItemListContainer />}
-						/>
+						<Route path='/category/:category' element={<ItemListContainer />} />
 						<Route path='/detail/:pid' element={<ItemDetailContainer />} />
 						<Route path='*' element={<Navigate to='/' />} />
 					</Routes>

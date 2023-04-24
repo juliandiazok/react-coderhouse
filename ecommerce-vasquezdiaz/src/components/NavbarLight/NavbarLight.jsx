@@ -31,7 +31,7 @@ function NavbarLight() {
 					<Nav className='me-auto'>
 						<div style={styles.navButton}>
 							<NavLink
-								to='/categoria/Balanceado'
+								to='/category/Balanceado'
 								className={({ isActive }) =>
 									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
 								}>
@@ -40,7 +40,7 @@ function NavbarLight() {
 						</div>
 						<div style={styles.navButton}>
 							<NavLink
-								to='/categoria/Accesorios'
+								to='/category/Accesorios'
 								className={({ isActive }) =>
 									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
 								}>

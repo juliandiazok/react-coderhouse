@@ -8,7 +8,7 @@ function ItemListContainer() {
 	const [productos, setProductos] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const { categoria } = useParams();
+	const { category } = useParams();
 	const styles = {
 		cards: {
 			display: 'flex',
@@ -22,7 +22,7 @@ function ItemListContainer() {
 	};
 
 	useEffect(() => {
-		if (!categoria) {
+		if (!category) {
 			mFetch()
 				.then((resultado) => {
 					setProductos(resultado);
@@ -33,13 +33,13 @@ function ItemListContainer() {
 			mFetch()
 				.then((resultado) => {
 					setProductos(
-						resultado.filter((producto) => producto.categoria === categoria)
+						resultado.filter((producto) => producto.category === category)
 					);
 				})
 				.catch((error) => console.log(error))
 				.finally(() => setIsLoading(false));
 		}
-	}, [categoria]);
+	}, [category]);
 	const handleProductFiltered = ({ filterState, handleFilterChange }) => (
 		<center>
 			{isLoading ? (
@@ -48,14 +48,14 @@ function ItemListContainer() {
 				<>
 					<div style={styles.cards}>
 						{filterState === ''
-							? productos.map(({ id, categoria, name, marca, price, foto }) => (
+							? productos.map(({ id, category, name, brand, price, photo }) => (
 									<ItemCard
 										id={id}
-										categoria={categoria}
+										category={category}
 										name={name}
-										marca={marca}
+										brand={brand}
 										price={price}
-										foto={foto}
+										photo={photo}
 									/>
 							  ))
 							: productos
@@ -64,14 +64,14 @@ function ItemListContainer() {
 											.toLowerCase()
 											.includes(filterState.toLowerCase())
 									)
-									.map(({ id, categoria, name, marca, price, foto }) => (
+									.map(({ id, category, name, brand, price, photo }) => (
 										<ItemCard
 											id={id}
-											categoria={categoria}
+											category={category}
 											name={name}
-											marca={marca}
+											brand={brand}
 											price={price}
-											foto={foto}
+											photo={photo}
 										/>
 									))}
 					</div>

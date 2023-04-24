@@ -11,12 +11,12 @@ export const ItemDetail = ({ item }) => {
 	return (
 		<div>
 			<Card style={styles.card}>
-				<Card.Img variant='top' src={item.foto} />
+				<Card.Img variant='top' src={item.photo} />
 				<Card.Body>
 					<Card.Title>
-						{item.marca}: {item.name}
+						{item.brand}: {item.name}
 					</Card.Title>
-					<Card.Text>Categoria: {item.categoria}</Card.Text>
+					<Card.Text>Categoria: {item.category}</Card.Text>
 					<Card.Text>Precio: ${item.price}</Card.Text>
 				</Card.Body>
 			</Card>
