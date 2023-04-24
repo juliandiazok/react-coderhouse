@@ -6,6 +6,12 @@ import CartWidget from '../CartWidget/CartWidget';
 import logo from '../../assets/images/loguito.png';
 
 function NavbarLight() {
+	const styles = {
+		navButton: {
+			marginLeft: '5px',
+		},
+	};
+
 	return (
 		<>
 			<br />
@@ -23,20 +29,24 @@ function NavbarLight() {
 						</Navbar.Brand>
 					</Link>
 					<Nav className='me-auto'>
-						<NavLink
-							to='/categoria/Balanceado'
-							className={({ isActive }) =>
-								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
-							}>
-							Balanceados
-						</NavLink>
-						<NavLink
-							to='/categoria/Accesorios'
-							className={({ isActive }) =>
-								isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
-							}>
-							Accesorios
-						</NavLink>
+						<div style={styles.navButton}>
+							<NavLink
+								to='/categoria/Balanceado'
+								className={({ isActive }) =>
+									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
+								}>
+								Balanceados
+							</NavLink>
+						</div>
+						<div style={styles.navButton}>
+							<NavLink
+								to='/categoria/Accesorios'
+								className={({ isActive }) =>
+									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
+								}>
+								Accesorios
+							</NavLink>
+						</div>
 					</Nav>
 				</Container>
 				<Navbar.Collapse className='justify-content-end'>

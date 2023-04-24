@@ -9,6 +9,17 @@ function ItemListContainer() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const { categoria } = useParams();
+	const styles = {
+		cards: {
+			display: 'flex',
+			flexDirection: 'row',
+			flexWrap: 'wrap',
+		},
+		products: {
+			padding: '10vh',
+			/*height: '70vh',*/
+		},
+	};
 
 	useEffect(() => {
 		if (!categoria) {
@@ -35,12 +46,7 @@ function ItemListContainer() {
 				<h2>Cargando...</h2>
 			) : (
 				<>
-					<div
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							flexWrap: 'wrap',
-						}}>
+					<div style={styles.cards}>
 						{filterState === ''
 							? productos.map(({ id, categoria, name, marca, price, foto }) => (
 									<ItemCard
@@ -76,12 +82,7 @@ function ItemListContainer() {
 
 	return (
 		<div style={{ padding: '1' }}>
-			<div
-				style={{
-					backgroundColor: 'white',
-					padding: '10vh',
-					/*height: '70vh',*/
-				}}>
+			<div style={styles.products}>
 				<Filter>{handleProductFiltered}</Filter>
 			</div>
 		</div>

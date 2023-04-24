@@ -2,8 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function ItemCard({ id, foto, name, marca, price, categoria }) {
+	const styles = {
+		'w-20': {
+			marginRight: '1px',
+			marginBottom: '1px',
+		},
+	};
+
 	return (
-		<div key={id} className='card w-25'>
+		<div key={id} className='card w-20' style={styles['w-20']}>
 			<Link to={`/detail/${id}`}>
 				<img src={foto} className='card-img-top' alt='imagen-card' />
 			</Link>

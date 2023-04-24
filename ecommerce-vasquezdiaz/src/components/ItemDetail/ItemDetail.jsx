@@ -1,17 +1,23 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import ItemCard from '../ItemCard/ItemCard';
 
 export const ItemDetail = ({ item }) => {
+	const styles = {
+		card: {
+			width: '18rem',
+		},
+	};
+
 	return (
 		<div>
-			<Card style={{ width: '18rem' }}>
+			<Card style={styles.card}>
 				<Card.Img variant='top' src={item.foto} />
 				<Card.Body>
 					<Card.Title>
 						{item.marca}: {item.name}
 					</Card.Title>
 					<Card.Text>Categoria: {item.categoria}</Card.Text>
+					<Card.Text>Precio: ${item.price}</Card.Text>
 				</Card.Body>
 			</Card>
 		</div>
