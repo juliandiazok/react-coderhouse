@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
 import { mFetch } from '../../assets/utils/mFetch';
+import { Loading } from '../Loading/Loading';
 
 export const ItemDetailContainer = () => {
 	const [item, setItem] = useState([]);
@@ -18,9 +19,7 @@ export const ItemDetailContainer = () => {
 	}, []);
 	return (
 		<div>
-			<center>
-				{isLoading ? <h2>Cargando...</h2> : <ItemDetail item={item} />}
-			</center>
+			<center>{isLoading ? <Loading /> : <ItemDetail item={item} />}</center>
 		</div>
 	);
 };

@@ -10,6 +10,7 @@ import NavbarLight from '../NavbarLight/NavbarLight';
 import ItemListContainer from '../ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from '../ItemDetailContainer/ItemDetailContainer';
 import fondo from '../../assets/images/fondo.jpg';
+import { CartContainer } from '../CartContainer/CartContainer';
 
 const Menu = () => {
 	const styles = {
@@ -34,6 +35,7 @@ const Menu = () => {
 								element={<ItemListContainer />}
 							/>
 							<Route path='/detail/:pid' element={<ItemDetailContainer />} />
+							<Route path='/cart' element={<CartContainer />} />
 							<Route path='*' element={<Navigate to='/' />} />
 						</Routes>
 					</div>

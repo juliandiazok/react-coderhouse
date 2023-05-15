@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemCard({ id, photo, name, brand, price, category }) {
-	const styles = {
-		'w-20': {
-			marginRight: '1px',
-			marginBottom: '1px',
-		},
-	};
+const styles = {
+	'w-20': {
+		marginRight: '1px',
+		marginBottom: '1px',
+	},
+};
 
+const ItemCard = memo(({ id, photo, name, brand, price, category }) => {
 	return (
 		<div key={id} className='card w-20' style={styles['w-20']}>
 			<Link to={`/detail/${id}`}>
@@ -24,6 +24,6 @@ function ItemCard({ id, photo, name, brand, price, category }) {
 			</div>
 		</div>
 	);
-}
+});
 
 export default ItemCard;

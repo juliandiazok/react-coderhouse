@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { mFetch } from '../../assets/utils/mFetch';
-import ItemCard from '../ItemCard/ItemCard';
-import Filter from '../Filter/Filter';
+import {
+	collection,
+	getDocs,
+	getFirestore,
+	query,
+	where,
+} from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
+import { Loading } from '../Loading/Loading';
+import ItemList from '../ItemList/ItemList';
 
 function ItemListContainer() {
 	const [productos, setProductos] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-
 	const { category } = useParams();
+
 	const styles = {
 		cards: {
 			display: 'flex',
@@ -17,73 +23,49 @@ function ItemListContainer() {
 		},
 		products: {
 			padding: '10vh',
-			/*height: '70vh',*/
 		},
 	};
 
 	useEffect(() => {
+		const dbFirestore = getFirestore();
+		const queryCollection = collection(dbFirestore, 'products');
+
 		if (!category) {
-			mFetch()
-				.then((resultado) => {
-					setProductos(resultado);
-				})
+			getDocs(queryCollection)
+				.then((res) =>
+					setProductos(
+						res.docs.map((producto) => ({
+							id: producto.id,
+							...producto.data(),
+						}))
+					)
+				)
 				.catch((error) => console.log(error))
 				.finally(() => setIsLoading(false));
 		} else {
-			mFetch()
-				.then((resultado) => {
+			const queryCollectionFiltered = query(
+				queryCollection,
+				where('category', '==', category)
+			);
+
+			getDocs(queryCollectionFiltered)
+				.then((res) =>
 					setProductos(
-						resultado.filter((producto) => producto.category === category)
-					);
-				})
+						res.docs.map((producto) => ({
+							id: producto.id,
+							...producto.data(),
+						}))
+					)
+				)
 				.catch((error) => console.log(error))
 				.finally(() => setIsLoading(false));
 		}
 	}, [category]);
-	const handleProductFiltered = ({ filterState, handleFilterChange }) => (
-		<center>
-			{isLoading ? (
-				<h2>Cargando...</h2>
-			) : (
-				<>
-					<div style={styles.cards}>
-						{filterState === ''
-							? productos.map(({ id, category, name, brand, price, photo }) => (
-									<ItemCard
-										id={id}
-										category={category}
-										name={name}
-										brand={brand}
-										price={price}
-										photo={photo}
-									/>
-							  ))
-							: productos
-									.filter((producto) =>
-										producto.name
-											.toLowerCase()
-											.includes(filterState.toLowerCase())
-									)
-									.map(({ id, category, name, brand, price, photo }) => (
-										<ItemCard
-											id={id}
-											category={category}
-											name={name}
-											brand={brand}
-											price={price}
-											photo={photo}
-										/>
-									))}
-					</div>
-				</>
-			)}
-		</center>
-	);
 
 	return (
 		<div style={{ padding: '1' }}>
 			<div style={styles.products}>
-				<Filter>{handleProductFiltered}</Filter>
+				{isLoading ? <Loading /> : <ItemList productos={productos} />}
 			</div>
 		</div>
 	);
