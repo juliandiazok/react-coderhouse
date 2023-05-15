@@ -1,6 +1,8 @@
 import React from 'react';
+import { useCartContext } from '../../CartContext/CartContext';
 
 export default function CartWidget() {
+	const { totalQuantity } = useCartContext();
 	return (
 		<div
 			style={{
@@ -8,7 +10,7 @@ export default function CartWidget() {
 				paddingRight: 30,
 				textDecoration: 'none',
 			}}>
-			<div>3🛒</div>
+			<div>{totalQuantity() !== 0 && totalQuantity()}🛒</div>
 		</div>
 	);
 }
