@@ -1,15 +1,45 @@
 import { useState } from 'react';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import { useCartContext } from '../../CartContext/CartContext';
 
-const CartForm = () => {
+export const CartForm = () => {
+	const [id, setId] = useState('');
 	const [dataForm, setDataForm] = useState({
 		name: '',
 		phone: '',
 		email: '',
 	});
 
+	const { cartList, totalPrice, vaciarCarrito } =
+		useCartContext();
+	
+	const generateOrder = (evt) => {
+		evt.preventDefault();
+
+		const order = {};
+		order.buyer = dataForm;
+		order.items = cartList.map(({ name, brand, id, price, quantity }) => ({
+			id,
+			name,
+			price,
+			brand,
+			quantity,
+		}));
+		order.total = totalPrice();
+
+		const dbFirestore = getFirestore();
+		const ordersCollection = collection(dbFirestore, 'orders');
+
+		addDoc(ordersCollection, order)
+			.then((res) => setId(res.id))
+			.catch((error) => console.log(error))
+			.finally(() => {
+				setDataForm({ name: '', phone: '', email: '' });
+				vaciarCarrito();
+			});
+	};
+
 	const handleOnChange = (evt) => {
-		console.log('nombre del input', evt.target.name);
-		console.log('valor del input', evt.target.value);
 		setDataForm({
 			...dataForm,
 			[evt.target.name]: evt.target.value,
@@ -18,7 +48,7 @@ const CartForm = () => {
 
 	return (
 		<div>
-			<form onSubmit={generarOrden}>
+			<form onSubmit={generateOrder}>
 				<input
 					type='text'
 					name='name'
@@ -40,11 +70,11 @@ const CartForm = () => {
 					value={dataForm.email}
 					placeholder='Ingrese el E-mail'
 				/>
-
-				<button className='btn btn-outline-danger'>generar orden</button>
+				<p>
+					Precio Total: {totalPrice()}
+				</p>
+				<button className='btn btn-outline-danger'>Generar Orden</button>
 			</form>
 		</div>
 	);
 };
-
-export default CartForm;

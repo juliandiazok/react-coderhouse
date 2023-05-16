@@ -12,6 +12,11 @@ function NavbarLight() {
 		},
 	};
 
+	const categories = [
+		{id: 1, category: 'Balanceado', name: 'Balanceado', description: 'Aqui se muestran los elementos de la categoria alimentos balanceados'},
+		{id: 2, category: 'Accesorios', name: 'Accesorios', description: 'Aqui se muestran los elementos de la categoria accesorios'},
+	]
+
 	return (
 		<>
 			<br />
@@ -29,24 +34,16 @@ function NavbarLight() {
 						</Navbar.Brand>
 					</Link>
 					<Nav className='me-auto'>
-						<div style={styles.navButton}>
+						{categories.map(category => <div key={category.id}><div style={styles.navButton}>
 							<NavLink
-								to='/category/Balanceado'
+								key={category.id}
+								to={`/category/${category.category}`}
 								className={({ isActive }) =>
 									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
 								}>
-								Balanceados
+								{category.name}
 							</NavLink>
-						</div>
-						<div style={styles.navButton}>
-							<NavLink
-								to='/category/Accesorios'
-								className={({ isActive }) =>
-									isActive ? 'btn btn-warning' : 'btn btn-outline-warning'
-								}>
-								Accesorios
-							</NavLink>
-						</div>
+						</div></div>)}
 					</Nav>
 				</Container>
 				<Navbar.Collapse className='justify-content-end'>
