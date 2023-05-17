@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
-import { useCartContext } from '../../CartContext/CartContext';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../../CartContext/CartContext';
 
 export const CartContainer = () => {
-
 	const { cartList, vaciarCarrito, deleteProduct, totalPrice, totalQuantity } =
 		useCartContext();
-
 
 	return (
 		<div>
@@ -32,7 +28,6 @@ export const CartContainer = () => {
 					<Link to={'/checkout'} className='btn btn-outline-danger'>
 						Finalizar Compra
 					</Link>
-
 				</>
 			) : (
 				<div>
