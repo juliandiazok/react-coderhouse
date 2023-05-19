@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const Filter = ({ children }) => {
-	// children función
 	const [filterState, setFilterState] = useState('');
 
 	const handleFilterChange = (evt) => {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
-import { mFetch } from '../../assets/utils/mFetch';
 import { Loading } from '../Loading/Loading';
 
 export const ItemDetailContainer = () => {
