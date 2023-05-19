@@ -34,7 +34,7 @@ export const ItemDetail = ({ item }) => {
 						<Card.Text>Stock: {item.stock}</Card.Text>
 						<Card.Text>
 							{!isCant ? (
-								<ItemCount onAdd={onAdd} />
+								<ItemCount onAdd={onAdd} stock={item.stock} />
 							) : (
 								<>
 									<Link to={'/cart'} className='btn btn-outline-danger'>
